@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+//"hello"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
