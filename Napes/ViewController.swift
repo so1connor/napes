@@ -9,9 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBOutlet weak var imageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageView.layer.contentsRect = CGRect(x:0,y:0,width:1,height:1)
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 

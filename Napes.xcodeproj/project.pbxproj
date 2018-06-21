@@ -15,6 +15,18 @@
 		1D24CB6220DAC51A0070F734 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D24CB6020DAC51A0070F734 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		1D24CB6920DB8D790070F734 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1D24CB5120DAC5190070F734 /* Napes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Napes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D24CB5420DAC5190070F734 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +89,7 @@
 				1D24CB4D20DAC5190070F734 /* Sources */,
 				1D24CB4E20DAC5190070F734 /* Frameworks */,
 				1D24CB4F20DAC5190070F734 /* Resources */,
+				1D24CB6920DB8D790070F734 /* CopyFiles */,
 			);
 			buildRules = (
 			);
