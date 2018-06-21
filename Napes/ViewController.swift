@@ -7,16 +7,24 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ViewController: UIViewController , UIScrollViewDelegate {
+class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
+    
+    var locationManager : CLLocationManager!
     var imagewidth: CGFloat = 0
     var imageheight: CGFloat = 0
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager = CLLocationManager();
+        locationManager.delegate = self;
+        locationManager.requestWhenInUseAuthorization()
+
         self.scrollView.delegate = self
         imagewidth = self.imageView.image?.size.width ?? 0
         imageheight = self.imageView.image?.size.height ?? 0
@@ -50,6 +58,27 @@ class ViewController: UIViewController , UIScrollViewDelegate {
     
    func scrollViewDidScroll(_ scrollView : UIScrollView) {
         print("scrolled to %d %d",scrollView.contentOffset.x,scrollView.contentOffset.y)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations objects: [CLLocation]) {
+        //print("location")
+        let location:CLLocation = objects[objects.count-1]
+        let latitude = location.coordinate.latitude
+        let longitude = location.coordinate.longitude
+        let altitude = location.altitude
+        print(latitude, longitude, altitude, separator: " ")
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("location authorization status is %d", status.rawValue)
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+
     }
 
 
