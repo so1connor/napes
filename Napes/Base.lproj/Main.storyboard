@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="ipad10_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Napes" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbT-zm-cNk">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="20" width="834" height="1092"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="london" translatesAutoresizingMaskIntoConstraints="NO" id="MSy-Q2-b85">
                                         <rect key="frame" x="0.0" y="0.0" width="2400" height="2400"/>
@@ -36,19 +36,19 @@
                                 </constraints>
                             </scrollView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pinkspot" translatesAutoresizingMaskIntoConstraints="NO" id="QJE-8n-Wtj">
-                                <rect key="frame" x="162" y="318.5" width="50" height="50"/>
+                                <rect key="frame" x="392" y="531" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" priority="250" constant="50" id="Oqr-9e-eqb"/>
-                                    <constraint firstAttribute="width" priority="250" constant="50" id="wBh-Rx-Yh1"/>
+                                    <constraint firstAttribute="height" constant="50" id="8dv-ct-pY5"/>
+                                    <constraint firstAttribute="width" constant="50" id="dTy-5P-NkY"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="QJE-8n-Wtj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9FQ-7l-Je5"/>
+                            <constraint firstItem="QJE-8n-Wtj" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="D6l-Zp-RwI"/>
                             <constraint firstItem="nbT-zm-cNk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="JdS-0r-4em"/>
-                            <constraint firstItem="QJE-8n-Wtj" firstAttribute="centerY" secondItem="nbT-zm-cNk" secondAttribute="centerY" id="LMu-mm-pnV"/>
                             <constraint firstItem="nbT-zm-cNk" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="VDy-GN-hhr"/>
-                            <constraint firstItem="QJE-8n-Wtj" firstAttribute="centerX" secondItem="nbT-zm-cNk" secondAttribute="centerX" id="ff3-8L-8yA"/>
                             <constraint firstItem="nbT-zm-cNk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fs9-g7-2xI"/>
                             <constraint firstItem="nbT-zm-cNk" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="leg-oi-uEK"/>
                         </constraints>

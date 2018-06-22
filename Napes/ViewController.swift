@@ -15,10 +15,10 @@ class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManager
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var pinkSpot: UIImageView!
+    @IBOutlet weak var pinkSpotHeight: NSLayoutConstraint!
+    @IBOutlet weak var pinkSpotWidth: NSLayoutConstraint!
     
     var locationManager : CLLocationManager!
-    var imagewidth: CGFloat = 0
-    var imageheight: CGFloat = 0
     var tiles: Array = [
         SquareTile (name: "lakes", east: 1900, north: 800, size: 300),
         SquareTile (name: "london", east : 3100, north: 8500, size: 300)
@@ -27,6 +27,8 @@ class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManager
     //let wgs84: WGS84 = WGS84()
     var centringOffsetX:CGFloat = 0
     var centringOffsetY:CGFloat = 0
+    var latitude : Double = 0
+    var longitude : Double = 0
     
     required init?(coder aDecoder: NSCoder) {
         tile = tiles[0]
@@ -37,6 +39,9 @@ class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManager
     override func viewDidLoad() {
         super.viewDidLoad()
         self.scrollView.delegate = self
+        tile = tiles[1]
+        print (tile.name, tile.imageSize, separator: " ")
+        imageView.image = tile.image
         locationManager = CLLocationManager();
         locationManager.delegate = self;
         locationManager.requestWhenInUseAuthorization()
@@ -49,20 +54,17 @@ class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManager
     override func viewDidLayoutSubviews() {
         print("viewDidLayoutSubviews")
         super.viewDidLayoutSubviews()
-        tile = tiles[1]
-        print (tile.name, tile.imageSize, separator: " ")
-        imageView.image = tile.image
         let screenCentreX : CGFloat = UIScreen.main.bounds.width * 0.5
         let screenCentreY : CGFloat = UIScreen.main.bounds.height * 0.5
         centringOffsetX = tile.imageSize * 0.5 - screenCentreX
         centringOffsetY = tile.imageSize * 0.5 - screenCentreY
         print("centringOffset", centringOffsetX, centringOffsetY)
         self.scrollView.setContentOffset(CGPoint(x:centringOffsetX,y:centringOffsetY),animated: false)
-        //setLocation(latitude: 54.472483, longitude: -3.236813) // Gavel Neese bridge
-//        setLocation(latitude: 54.482136, longitude: -3.219275) //Great Gable
+        
+//      setLocation(latitude: 54.472483, longitude: -3.236813) // Gavel Neese bridge
+//      setLocation(latitude: 54.482136, longitude: -3.219275) //Great Gable
 //      setLocation(latitude: 51.558975, longitude: -0.097953) //1 Canning Road
         
-
         //the frames have now their final values, after applying constraints
     }
 
@@ -90,9 +92,17 @@ class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManager
         let location:CLLocation = objects[objects.count-1]
         let accuracy = Double(location.horizontalAccuracy)
         print("location accuracy", accuracy)
-        let latitude = Double(location.coordinate.latitude)
-        let longitude = Double(location.coordinate.longitude)
-        setLocation(latitude: latitude, longitude: longitude)
+        if(accuracy > 0){
+            latitude = Double(location.coordinate.latitude)
+            longitude = Double(location.coordinate.longitude)
+            setLocation(latitude: latitude, longitude: longitude)
+//            pinkSpotWidth.constant = CGFloat(accuracy)
+//            pinkSpotHeight.constant = CGFloat(accuracy)
+//            pinkSpot.layoutIfNeeded()
+//            print("pinkSpot", pinkSpot.frame.size.width, pinkSpot.frame.size.height)
+        } else {
+            print("location is invalid")
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
