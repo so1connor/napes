@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 
+
 class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -17,17 +18,27 @@ class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManager
     var locationManager : CLLocationManager!
     var imagewidth: CGFloat = 0
     var imageheight: CGFloat = 0
+    var tiles: Array = [
+        SquareTile (name: "lakes", east: 1900, north: 800, size: 300),
+        SquareTile (name: "london", east : 3100, north: 8500, size: 300)
+    ]
+    var tile : SquareTile
+    //let wgs84: WGS84 = WGS84()
+    var centringOffsetX:CGFloat = 0
+    var centringOffsetY:CGFloat = 0
+    
+    required init?(coder aDecoder: NSCoder) {
+        tile = tiles[0]
+        super.init(coder: aDecoder)
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager = CLLocationManager();
-        locationManager.delegate = self;
-        locationManager.requestWhenInUseAuthorization()
-
         self.scrollView.delegate = self
-        imagewidth = self.imageView.image?.size.width ?? 0
-        imageheight = self.imageView.image?.size.height ?? 0
+//        locationManager = CLLocationManager();
+//        locationManager.delegate = self;
+//        locationManager.requestWhenInUseAuthorization()
         
         
         
@@ -37,17 +48,17 @@ class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManager
     override func viewDidLayoutSubviews() {
         print("viewDidLayoutSubviews")
         super.viewDidLayoutSubviews()
+        tile = tiles[0]
+        print (tile.name, tile.imageSize, separator: " ")
+        imageView.image = tile.image
         let screenCentreX : CGFloat = UIScreen.main.bounds.width * 0.5
         let screenCentreY : CGFloat = UIScreen.main.bounds.height * 0.5
-        var offsetX :CGFloat = imagewidth/2 - screenCentreX
-        var offsetY :CGFloat = imageheight/2 - screenCentreY
-        offsetX += 50
-        offsetY += 150
-        self.scrollView.setContentOffset(CGPoint(x:offsetX,y:offsetY),animated: false)
-        print("image width is %f",self.imageView.image?.size.width ?? 0)
-        print("image height is %f",self.imageView.image?.size.height ?? 0)
-        //print("scroll position is %f %f",self.scrollView.contentOffset.x, self.scrollView.contentOffset.y)
-
+        centringOffsetX = tile.imageSize * 0.5 - screenCentreX
+        centringOffsetY = tile.imageSize * 0.5 - screenCentreY
+        print("centringOffset", centringOffsetX, centringOffsetY)
+        self.scrollView.setContentOffset(CGPoint(x:centringOffsetX,y:centringOffsetY),animated: false)
+        //setLocation(latitude: 54.472483, longitude: -3.236813) // Gavel Neese bridge
+        setLocation(latitude: 54.482136, longitude: -3.219275) //Great Gable
         //the frames have now their final values, after applying constraints
     }
 
@@ -57,17 +68,27 @@ class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManager
     }
     
    func scrollViewDidScroll(_ scrollView : UIScrollView) {
-        print("scrolled to %d %d",scrollView.contentOffset.x,scrollView.contentOffset.y)
+        print("scrolled to offset",scrollView.contentOffset.x,scrollView.contentOffset.y)
+    }
+    
+    func setLocation(latitude: Double, longitude: Double){
+        let offset : (x: CGFloat, y: CGFloat)? = tile.getPixelOffsetFromLatitudeLongitude(latitude: latitude, longitude: longitude)
+        if(offset != nil){
+            let x = offset!.x
+            let y = offset!.y
+            self.scrollView.setContentOffset(CGPoint(x:centringOffsetX + x,y:centringOffsetY - y),animated: false)
+        } else {
+            print("offset was nil")
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations objects: [CLLocation]) {
         //print("location")
-        let location:CLLocation = objects[objects.count-1]
-        let latitude = location.coordinate.latitude
-        let longitude = location.coordinate.longitude
-        let altitude = location.altitude
-        print(latitude, longitude, altitude, separator: " ")
-        
+        //let location:CLLocation = objects[objects.count-1]
+//        let latitude = Double(location.coordinate.latitude)
+//        let longitude = Double(location.coordinate.longitude)
+
+        //let altitude = location.altitude
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -75,11 +96,12 @@ class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManager
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print("location authorization status is %d", status.rawValue)
+        print("location authorization status is", status.rawValue)
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
 
     }
+    
 
 
 }

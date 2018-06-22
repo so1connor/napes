@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D1ACC6C20DCDB8300495A6A /* OSGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1ACC6B20DCDB8300495A6A /* OSGB.swift */; };
+		1D1ACC6E20DCE3E800495A6A /* WGS84.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1ACC6D20DCE3E800495A6A /* WGS84.swift */; };
+		1D1ACC7020DD2AA600495A6A /* SquareTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1ACC6F20DD2AA600495A6A /* SquareTile.swift */; };
 		1D24CB5520DAC5190070F734 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D24CB5420DAC5190070F734 /* AppDelegate.swift */; };
 		1D24CB5720DAC5190070F734 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D24CB5620DAC5190070F734 /* ViewController.swift */; };
 		1D24CB5A20DAC5190070F734 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D24CB5820DAC5190070F734 /* Main.storyboard */; };
@@ -28,6 +31,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1D1ACC6B20DCDB8300495A6A /* OSGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSGB.swift; sourceTree = "<group>"; };
+		1D1ACC6D20DCE3E800495A6A /* WGS84.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WGS84.swift; sourceTree = "<group>"; };
+		1D1ACC6F20DD2AA600495A6A /* SquareTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareTile.swift; sourceTree = "<group>"; };
 		1D24CB5120DAC5190070F734 /* Napes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Napes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D24CB5420DAC5190070F734 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D24CB5620DAC5190070F734 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +81,9 @@
 				1D24CB6020DAC51A0070F734 /* LaunchScreen.storyboard */,
 				1D24CB6320DAC51A0070F734 /* Info.plist */,
 				1D24CB5B20DAC5190070F734 /* Napes.xcdatamodeld */,
+				1D1ACC6B20DCDB8300495A6A /* OSGB.swift */,
+				1D1ACC6D20DCE3E800495A6A /* WGS84.swift */,
+				1D1ACC6F20DD2AA600495A6A /* SquareTile.swift */,
 			);
 			path = Napes;
 			sourceTree = "<group>";
@@ -151,8 +160,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D1ACC6E20DCE3E800495A6A /* WGS84.swift in Sources */,
+				1D1ACC6C20DCDB8300495A6A /* OSGB.swift in Sources */,
 				1D24CB5720DAC5190070F734 /* ViewController.swift in Sources */,
 				1D24CB5D20DAC5190070F734 /* Napes.xcdatamodeld in Sources */,
+				1D1ACC7020DD2AA600495A6A /* SquareTile.swift in Sources */,
 				1D24CB5520DAC5190070F734 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
