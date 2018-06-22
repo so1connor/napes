@@ -14,6 +14,7 @@ class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManager
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var pinkSpot: UIImageView!
     
     var locationManager : CLLocationManager!
     var imagewidth: CGFloat = 0
@@ -36,9 +37,9 @@ class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManager
     override func viewDidLoad() {
         super.viewDidLoad()
         self.scrollView.delegate = self
-//        locationManager = CLLocationManager();
-//        locationManager.delegate = self;
-//        locationManager.requestWhenInUseAuthorization()
+        locationManager = CLLocationManager();
+        locationManager.delegate = self;
+        locationManager.requestWhenInUseAuthorization()
         
         
         
@@ -48,7 +49,7 @@ class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManager
     override func viewDidLayoutSubviews() {
         print("viewDidLayoutSubviews")
         super.viewDidLayoutSubviews()
-        tile = tiles[0]
+        tile = tiles[1]
         print (tile.name, tile.imageSize, separator: " ")
         imageView.image = tile.image
         let screenCentreX : CGFloat = UIScreen.main.bounds.width * 0.5
@@ -58,7 +59,10 @@ class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManager
         print("centringOffset", centringOffsetX, centringOffsetY)
         self.scrollView.setContentOffset(CGPoint(x:centringOffsetX,y:centringOffsetY),animated: false)
         //setLocation(latitude: 54.472483, longitude: -3.236813) // Gavel Neese bridge
-        setLocation(latitude: 54.482136, longitude: -3.219275) //Great Gable
+//        setLocation(latitude: 54.482136, longitude: -3.219275) //Great Gable
+//      setLocation(latitude: 51.558975, longitude: -0.097953) //1 Canning Road
+        
+
         //the frames have now their final values, after applying constraints
     }
 
@@ -68,7 +72,7 @@ class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManager
     }
     
    func scrollViewDidScroll(_ scrollView : UIScrollView) {
-        print("scrolled to offset",scrollView.contentOffset.x,scrollView.contentOffset.y)
+        //print("scrolled to offset",scrollView.contentOffset.x,scrollView.contentOffset.y)
     }
     
     func setLocation(latitude: Double, longitude: Double){
@@ -76,19 +80,19 @@ class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManager
         if(offset != nil){
             let x = offset!.x
             let y = offset!.y
-            self.scrollView.setContentOffset(CGPoint(x:centringOffsetX + x,y:centringOffsetY - y),animated: false)
+            self.scrollView.setContentOffset(CGPoint(x:centringOffsetX + x,y:centringOffsetY - y),animated: true)
         } else {
             print("offset was nil")
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations objects: [CLLocation]) {
-        //print("location")
-        //let location:CLLocation = objects[objects.count-1]
-//        let latitude = Double(location.coordinate.latitude)
-//        let longitude = Double(location.coordinate.longitude)
-
-        //let altitude = location.altitude
+        let location:CLLocation = objects[objects.count-1]
+        let accuracy = Double(location.horizontalAccuracy)
+        print("location accuracy", accuracy)
+        let latitude = Double(location.coordinate.latitude)
+        let longitude = Double(location.coordinate.longitude)
+        setLocation(latitude: latitude, longitude: longitude)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
