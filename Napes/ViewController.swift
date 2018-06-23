@@ -54,6 +54,7 @@ class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManager
     override func viewDidLayoutSubviews() {
         print("viewDidLayoutSubviews")
         super.viewDidLayoutSubviews()
+        
         let screenCentreX : CGFloat = UIScreen.main.bounds.width * 0.5
         let screenCentreY : CGFloat = UIScreen.main.bounds.height * 0.5
         centringOffsetX = tile.imageSize * 0.5 - screenCentreX
@@ -96,9 +97,12 @@ class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManager
             latitude = Double(location.coordinate.latitude)
             longitude = Double(location.coordinate.longitude)
             setLocation(latitude: latitude, longitude: longitude)
-//            pinkSpotWidth.constant = CGFloat(accuracy)
-//            pinkSpotHeight.constant = CGFloat(accuracy)
-//            pinkSpot.layoutIfNeeded()
+            let newSize = CGFloat(accuracy)
+            let clampedSize = min(max(newSize, 20), 100)
+            print("clamped size", clampedSize)
+            pinkSpotWidth.constant = clampedSize
+            pinkSpotHeight.constant = clampedSize
+            self.view.layoutIfNeeded()
 //            print("pinkSpot", pinkSpot.frame.size.width, pinkSpot.frame.size.height)
         } else {
             print("location is invalid")
