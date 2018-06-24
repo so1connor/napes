@@ -26,13 +26,11 @@ class SquareTile {
     
     init(name: String, east: Int, north: Int, size: Int){
         self.name = name
-//        self.leftEast = east
-//        self.bottomNorth = north
-        self.centreEasting = east + size / 2
+       self.centreEasting = east + size / 2
         self.centreNorthing = north + size / 2
         self.gridSize = size
         image = UIImage(named: name)
-       self.imageSize = image.size.width // not image has blank canvas border to double size
+       self.imageSize = image.size.width // note image has blank canvas border to double size
         pixelsPerGridUnit = image.size.width / CGFloat(2 * size) // so we have to double grid units
         print(name, centreEasting, centreNorthing, gridSize, imageSize, pixelsPerGridUnit, separator: " ")
     }
@@ -51,7 +49,7 @@ class SquareTile {
             result = (CGFloat(easting) * self.pixelsPerGridUnit, CGFloat(northing) * self.pixelsPerGridUnit)
             print(result!.x,result!.y, " ")
         } else {
-            print("gridReference was nil")
+            print("gridReference was outside Great Britain")
         }
     return result
     }

@@ -19,6 +19,7 @@ class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManager
     @IBOutlet weak var pinkSpotWidth: NSLayoutConstraint!
     
     var locationManager : CLLocationManager!
+    var currentLocation : CLLocation!
     var tiles: Array = [
         SquareTile (name: "lakes", east: 1900, north: 800, size: 300),
         SquareTile (name: "london", east : 3100, north: 8500, size: 300)
@@ -35,9 +36,47 @@ class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManager
         super.init(coder: aDecoder)
     }
     
+    @objc func settingChanged() {
+//        if let defaults = notification.object as? UserDefaults {
+            print("settings changed")
+//            if defaults.bool(forKey: "enabled_preference") {
+//                print("enabled_preference set to ON")
+//            }
+//            else {
+//                print("enabled_preference set to OFF")
+//            }
+//        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(deviceRotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+    }
+    
+    @objc func deviceRotated(){
+//        if UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
+//            print("Landscape")
+//            // Resize other things
+//        }
+        if(currentLocation != nil){
+            setLocation(location: currentLocation!)
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewDidLoad")
+//        let appDefaults = [String:AnyObject]()
+//        UserDefaults.standard.register(defaults: appDefaults)
+//        NotificationCenter.default.addObserver(self, selector: #selector(settingChanged), name: UserDefaults.didChangeNotification, object: nil)
+//
+//        settingChanged()
+
         self.scrollView.delegate = self
         tile = tiles[1]
         print (tile.name, tile.imageSize, separator: " ")
@@ -45,9 +84,6 @@ class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManager
         locationManager = CLLocationManager();
         locationManager.delegate = self;
         locationManager.requestWhenInUseAuthorization()
-        
-        
-        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -78,35 +114,35 @@ class ViewController: UIViewController , UIScrollViewDelegate, CLLocationManager
         //print("scrolled to offset",scrollView.contentOffset.x,scrollView.contentOffset.y)
     }
     
-    func setLocation(latitude: Double, longitude: Double){
-        let offset : (x: CGFloat, y: CGFloat)? = tile.getPixelOffsetFromLatitudeLongitude(latitude: latitude, longitude: longitude)
-        if(offset != nil){
-            let x = offset!.x
-            let y = offset!.y
-            self.scrollView.setContentOffset(CGPoint(x:centringOffsetX + x,y:centringOffsetY - y),animated: true)
-        } else {
-            print("offset was nil")
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations objects: [CLLocation]) {
-        let location:CLLocation = objects[objects.count-1]
+    func setLocation(location: CLLocation){
         let accuracy = Double(location.horizontalAccuracy)
         print("location accuracy", accuracy)
         if(accuracy > 0){
             latitude = Double(location.coordinate.latitude)
             longitude = Double(location.coordinate.longitude)
-            setLocation(latitude: latitude, longitude: longitude)
-            let newSize = CGFloat(accuracy)
+            let newSize = CGFloat(2 * accuracy)
             let clampedSize = min(max(newSize, 20), 100)
             print("clamped size", clampedSize)
             pinkSpotWidth.constant = clampedSize
             pinkSpotHeight.constant = clampedSize
             self.view.layoutIfNeeded()
-//            print("pinkSpot", pinkSpot.frame.size.width, pinkSpot.frame.size.height)
+
+            let offset : (x: CGFloat, y: CGFloat)? = tile.getPixelOffsetFromLatitudeLongitude(latitude: latitude, longitude: longitude)
+            if(offset != nil){
+                let x = offset!.x
+                let y = offset!.y
+                self.scrollView.setContentOffset(CGPoint(x:centringOffsetX + x,y:centringOffsetY - y),animated: true)
+            } else {
+                print("offset was nil")
+            }
         } else {
             print("location is invalid")
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations objects: [CLLocation]) {
+        currentLocation = objects[objects.count-1]
+        setLocation(location: currentLocation)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
