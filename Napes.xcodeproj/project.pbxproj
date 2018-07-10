@@ -14,7 +14,6 @@
 		1D24CB5520DAC5190070F734 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D24CB5420DAC5190070F734 /* AppDelegate.swift */; };
 		1D24CB5720DAC5190070F734 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D24CB5620DAC5190070F734 /* ViewController.swift */; };
 		1D24CB5A20DAC5190070F734 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D24CB5820DAC5190070F734 /* Main.storyboard */; };
-		1D24CB5D20DAC5190070F734 /* Napes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1D24CB5B20DAC5190070F734 /* Napes.xcdatamodeld */; };
 		1D24CB5F20DAC51A0070F734 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D24CB5E20DAC51A0070F734 /* Assets.xcassets */; };
 		1D24CB6220DAC51A0070F734 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D24CB6020DAC51A0070F734 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -40,7 +39,6 @@
 		1D24CB5420DAC5190070F734 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D24CB5620DAC5190070F734 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1D24CB5920DAC5190070F734 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1D24CB5C20DAC5190070F734 /* Napes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Napes.xcdatamodel; sourceTree = "<group>"; };
 		1D24CB5E20DAC51A0070F734 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D24CB6120DAC51A0070F734 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D24CB6320DAC51A0070F734 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -82,7 +80,6 @@
 				1D24CB5E20DAC51A0070F734 /* Assets.xcassets */,
 				1D24CB6020DAC51A0070F734 /* LaunchScreen.storyboard */,
 				1D24CB6320DAC51A0070F734 /* Info.plist */,
-				1D24CB5B20DAC5190070F734 /* Napes.xcdatamodeld */,
 				1D1ACC6B20DCDB8300495A6A /* OSGB.swift */,
 				1D1ACC6D20DCE3E800495A6A /* WGS84.swift */,
 				1D1ACC6F20DD2AA600495A6A /* SquareTile.swift */,
@@ -124,6 +121,11 @@
 				TargetAttributes = {
 					1D24CB5020DAC5190070F734 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -167,7 +169,6 @@
 				1D1ACC6E20DCE3E800495A6A /* WGS84.swift in Sources */,
 				1D1ACC6C20DCDB8300495A6A /* OSGB.swift in Sources */,
 				1D24CB5720DAC5190070F734 /* ViewController.swift in Sources */,
-				1D24CB5D20DAC5190070F734 /* Napes.xcdatamodeld in Sources */,
 				1D1ACC7020DD2AA600495A6A /* SquareTile.swift in Sources */,
 				1D24CB5520DAC5190070F734 /* AppDelegate.swift in Sources */,
 			);
@@ -369,19 +370,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		1D24CB5B20DAC5190070F734 /* Napes.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				1D24CB5C20DAC5190070F734 /* Napes.xcdatamodel */,
-			);
-			currentVersion = 1D24CB5C20DAC5190070F734 /* Napes.xcdatamodel */;
-			path = Napes.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 1D24CB4920DAC5190070F734 /* Project object */;
 }

@@ -31,36 +31,35 @@ func getEastingNorthingFromLatitudeLongitude(latitude : Double, longitude : Doub
             let height : Double = 0
         
             let x1 : Double = Lat_Long_H_to_X(PHI: latitude, LAM : longitude, H : height)
-        
             let y1 : Double = Lat_Long_H_to_Y(PHI :latitude, LAM : longitude, H : height)
-        
             let z1 : Double = Lat_H_to_Z(PHI : latitude, H : height)
-        
             let x2 : Double = Helmert_X(X: x1,Y: y1,Z: z1,DX : -446.448, Y_Rot: -0.2470, Z_Rot: -0.8421, s:20.4894)
             let y2 : Double = Helmert_Y(X: x1,Y: y1,Z: z1,DY : 125.157, X_Rot: -0.1502, Z_Rot : -0.8421, s :20.4894)
             let z2 : Double = Helmert_Z(X: x1,Y: y1,Z: z1,DZ: -542.060,X_Rot: -0.1502,Y_Rot: -0.2470,s: 20.4894)
-        
-        
             let lat2 : Double = XYZ_to_Lat(X: x2,Y: y2,Z: z2,a: 6377563.396,b: 6356256.910)
             let long2 : Double = XYZ_to_Long(X: x2,Y: y2)
-        
-            var east : Double = Lat_Long_to_East (PHI: lat2,LAM: long2,a: 6377563.396,b: 6356256.910,e0: 400000,f0: 0.999601272,PHI0: 49.00000,LAM0: -2.00000)
-            var north : Double = Lat_Long_to_North(PHI: lat2,LAM: long2,a: 6377563.396,b: 6356256.910,e0: 400000,n0: -100000,f0: 0.999601272,PHI0: 49.00000,LAM0: -2.00000)
-            
-            east = round(east)
-            north = round(north)
-            print(east, north)
-            
+            let east : Double = Lat_Long_to_East (PHI: lat2,LAM: long2,a: 6377563.396,b: 6356256.910,e0: 400000,f0: 0.999601272,PHI0: 49.00000,LAM0: -2.00000)
+            let north : Double = Lat_Long_to_North(PHI: lat2,LAM: long2,a: 6377563.396,b: 6356256.910,e0: 400000,n0: -100000,f0: 0.999601272,PHI0: 49.00000,LAM0: -2.00000)
+            print("east north", east, north)
+            let eastings = Int(round(east))
+            let northings = Int(round(north))
+            print("eastings northings", eastings, northings)
 //            let indexX : UInt = UInt(floor(east/100000))
 //            let indexY : UInt = UInt(floor(north/100000))
 //            print(indexX, indexY, separator: " ")
+            var grideast = eastings%100000
+            var gridnorth = northings%100000
+            print("grid east north", grideast, gridnorth)
+            grideast = Int(round(Double(grideast)/10))
+            gridnorth = Int(round(Double(gridnorth)/10))
+            print("grid east north 4 digits", grideast, gridnorth)
             
-            east = round(Double(Int(east)%100000))
-            north = round(Double(Int(north)%100000))
-            east /= 10 //precision 4 digits
-            north /= 10
-            print ("grid", east, north)
-            result = (easting: Int(east), northing: Int(north))
+            //east = round(Double(Int(east)%100000))
+            //north = round(Double(Int(north)%100000))
+            //east /= 10 //precision 4 digits
+            //north /= 10
+            result = (easting: grideast, northing: gridnorth)
+            //result = (easting: Int(round(east)), northing: Int(round(north)))
         }
     return result
     }
