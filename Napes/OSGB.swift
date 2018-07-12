@@ -4,7 +4,9 @@
 //
 //  Created by Steve O'Connor on 22/06/2018.
 //  Copyright © 2018 Steve O'Connor. All rights reserved.
-//
+////  based on work by
+//  copyright (c)2005 Paul Dixon (paul@elphin.com)
+
 
 import Foundation
 
@@ -22,7 +24,7 @@ extension String {
 class OSGB
 {
     var northings : u_long = 0, eastings : u_long = 0
-    let prefixes = [
+    public let prefixes = [
         ["SV","SW","SX","SY","SZ","TV","TW"],
         ["SQ","SR","SS","ST","SU","TQ","TR"],
         ["SL","SM","SN","SO","SP","TL","TM"],
@@ -68,5 +70,8 @@ class OSGB
             + east.leftPadding(toLength: precision, withPad: "0") + " "
             + north.leftPadding(toLength: precision, withPad: "0")
     }
+    
+    
+
     
 }

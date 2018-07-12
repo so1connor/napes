@@ -16,6 +16,8 @@
 		1D24CB5A20DAC5190070F734 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D24CB5820DAC5190070F734 /* Main.storyboard */; };
 		1D24CB5F20DAC51A0070F734 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D24CB5E20DAC51A0070F734 /* Assets.xcassets */; };
 		1D24CB6220DAC51A0070F734 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D24CB6020DAC51A0070F734 /* LaunchScreen.storyboard */; };
+		1DCCB4D120F50AF00042EF02 /* GTMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCCB4D020F50AF00042EF02 /* GTMath.swift */; };
+		1DCCB4D320F51DF10042EF02 /* GridLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCCB4D220F51DF10042EF02 /* GridLocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,6 +44,8 @@
 		1D24CB5E20DAC51A0070F734 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D24CB6120DAC51A0070F734 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D24CB6320DAC51A0070F734 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1DCCB4D020F50AF00042EF02 /* GTMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTMath.swift; sourceTree = "<group>"; };
+		1DCCB4D220F51DF10042EF02 /* GridLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLocation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,8 @@
 				1D24CB5E20DAC51A0070F734 /* Assets.xcassets */,
 				1D24CB6020DAC51A0070F734 /* LaunchScreen.storyboard */,
 				1D24CB6320DAC51A0070F734 /* Info.plist */,
+				1DCCB4D220F51DF10042EF02 /* GridLocation.swift */,
+				1DCCB4D020F50AF00042EF02 /* GTMath.swift */,
 				1D1ACC6B20DCDB8300495A6A /* OSGB.swift */,
 				1D1ACC6D20DCE3E800495A6A /* WGS84.swift */,
 				1D1ACC6F20DD2AA600495A6A /* SquareTile.swift */,
@@ -166,10 +172,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DCCB4D120F50AF00042EF02 /* GTMath.swift in Sources */,
 				1D1ACC6E20DCE3E800495A6A /* WGS84.swift in Sources */,
 				1D1ACC6C20DCDB8300495A6A /* OSGB.swift in Sources */,
 				1D24CB5720DAC5190070F734 /* ViewController.swift in Sources */,
 				1D1ACC7020DD2AA600495A6A /* SquareTile.swift in Sources */,
+				1DCCB4D320F51DF10042EF02 /* GridLocation.swift in Sources */,
 				1D24CB5520DAC5190070F734 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

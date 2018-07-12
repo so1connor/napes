@@ -18,10 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbT-zm-cNk">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbT-zm-cNk">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lakes" translatesAutoresizingMaskIntoConstraints="NO" id="MSy-Q2-b85">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="great gable" translatesAutoresizingMaskIntoConstraints="NO" id="MSy-Q2-b85">
                                         <rect key="frame" x="0.0" y="0.0" width="2400" height="2400"/>
                                     </imageView>
                                 </subviews>
@@ -35,7 +35,23 @@
                                     <constraint firstItem="MSy-Q2-b85" firstAttribute="leading" secondItem="nbT-zm-cNk" secondAttribute="leading" id="qY4-q5-eFy"/>
                                 </constraints>
                             </scrollView>
-                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pinkspot" translatesAutoresizingMaskIntoConstraints="NO" id="QJE-8n-Wtj">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="0.0 m" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Asg-Zf-s1K">
+                                <rect key="frame" x="0.0" y="538" width="320" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="btk-gA-boq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bluering" translatesAutoresizingMaskIntoConstraints="NO" id="sOB-iU-e45" userLabel="Blue Ring">
+                                <rect key="frame" x="135" y="269" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6X5-Um-HAn"/>
+                                    <constraint firstAttribute="width" constant="50" id="qcu-Km-zAc"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bluespot" translatesAutoresizingMaskIntoConstraints="NO" id="QJE-8n-Wtj" userLabel="Blue Spot">
                                 <rect key="frame" x="155" y="289" width="10" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="8dv-ct-pY5"/>
@@ -45,12 +61,17 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Asg-Zf-s1K" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="J4o-xb-az2"/>
                             <constraint firstItem="nbT-zm-cNk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="JdS-0r-4em"/>
                             <constraint firstItem="QJE-8n-Wtj" firstAttribute="centerX" secondItem="nbT-zm-cNk" secondAttribute="centerX" id="Kon-YD-DyQ"/>
+                            <constraint firstItem="Asg-Zf-s1K" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Maq-7e-v9F"/>
                             <constraint firstItem="nbT-zm-cNk" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="VDy-GN-hhr"/>
                             <constraint firstItem="nbT-zm-cNk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fs9-g7-2xI"/>
+                            <constraint firstItem="sOB-iU-e45" firstAttribute="centerY" secondItem="nbT-zm-cNk" secondAttribute="centerY" id="hQm-CH-GzZ"/>
+                            <constraint firstItem="sOB-iU-e45" firstAttribute="centerX" secondItem="nbT-zm-cNk" secondAttribute="centerX" id="lQb-l7-feY"/>
                             <constraint firstItem="nbT-zm-cNk" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="leg-oi-uEK"/>
                             <constraint firstItem="QJE-8n-Wtj" firstAttribute="centerY" secondItem="nbT-zm-cNk" secondAttribute="centerY" id="tde-Fh-lO9"/>
+                            <constraint firstItem="Asg-Zf-s1K" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="vML-rX-pgz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -60,15 +81,17 @@
                         <outlet property="pinkSpotHeight" destination="8dv-ct-pY5" id="hUf-dU-O9g"/>
                         <outlet property="pinkSpotWidth" destination="dTy-5P-NkY" id="T01-IV-TH6"/>
                         <outlet property="scrollView" destination="nbT-zm-cNk" id="64F-Sn-vxY"/>
+                        <outlet property="textView" destination="Asg-Zf-s1K" id="h5s-5V-r5f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.799999999999997" y="29.23538230884558"/>
+            <point key="canvasLocation" x="31.875" y="28.52112676056338"/>
         </scene>
     </scenes>
     <resources>
-        <image name="lakes" width="2400" height="2400"/>
-        <image name="pinkspot" width="50" height="50"/>
+        <image name="bluering" width="100" height="100"/>
+        <image name="bluespot" width="50" height="50"/>
+        <image name="great gable" width="2400" height="2400"/>
     </resources>
 </document>
